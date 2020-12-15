@@ -1,0 +1,14 @@
+---
+- name: Set up nginx.
+  hosts: all
+  become: yes
+  vars:
+    website_name: "regular-site.com"
+    website_role_path: ""
+    server_root: "/var/www/{{ website_name }}"
+    https_port: 443
+    copy_config: yes
+    copy_content: no
+    letsencrypt_cert: no
+  tasks:
+    - include_tasks: tasks/main.yml
