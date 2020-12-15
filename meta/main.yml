@@ -1,3 +1,6 @@
 ---
+galaxy_info:
+  author: "Patrick Boyle"
+  description: "Sets up an nginx server."
 dependencies:
   - tpboyle.python
