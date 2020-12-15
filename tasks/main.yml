@@ -65,12 +65,12 @@
 #     group: root
 #   when: copy_config
 
-# - name: server tokens are hidden. (i.e. nginx version displayed on error pages)
-#   lineinfile:
-#     state: present
-#     path: /etc/nginx/nginx.conf
-#     regexp: 'server_tokens '
-#     line: 'server_tokens off;'
+- name: server tokens are hidden. (i.e. nginx version displayed on error pages)
+  lineinfile:
+    state: present
+    path: /etc/nginx/nginx.conf
+    regexp: 'server_tokens '
+    line: 'server_tokens off;'
 
 
 # ## CONTENT ##
