@@ -24,6 +24,14 @@
     name: nginx
     state: present
 
+- name: python is installed.
+  include_role:
+    name: tpboyle.python
+
+- name: Install pyOpenSSL.
+  pip:
+    name: pyOpenSSL
+
 
 ## CREATE SITES-AVAILABLE/ENABLED ##
 
@@ -47,23 +55,23 @@
     state: absent
     path: "/etc/nginx/sites-enabled/default"
 
-# - name: site config files for website are present.
-#   template:
-#     src: "templates/site.conf.j2"
-#     dest: "/etc/nginx/sites-available/{{ website_name }}"
-#     owner: root
-#     group: root
-#     mode: 0755
-#   when: copy_config
+- name: site config files for website are present.
+  template:
+    src: "templates/site.conf.j2"
+    dest: "/etc/nginx/sites-available/{{ website_name }}"
+    owner: root
+    group: root
+    mode: 0755
+  when: copy_config
 
-# - name: website's config is linked to in sites-enabled.
-#   file:
-#     state: link
-#     src: "/etc/nginx/sites-available/{{ website_name }}"
-#     dest: "/etc/nginx/sites-enabled/{{ website_name }}"
-#     owner: root
-#     group: root
-#   when: copy_config
+- name: website's config is linked to in sites-enabled.
+  file:
+    state: link
+    src: "/etc/nginx/sites-available/{{ website_name }}"
+    dest: "/etc/nginx/sites-enabled/{{ website_name }}"
+    owner: root
+    group: root
+  when: copy_config
 
 - name: server tokens are hidden. (i.e. nginx version displayed on error pages)
   lineinfile:
@@ -107,8 +115,8 @@
 
 # ## HTTPS ##
 
-# - name: HTTPS has been set up.
-#   include_tasks: https.yml
+- name: HTTPS has been set up.
+  include_tasks: https.yml
 
 
 # ## RESTART & END STATE
