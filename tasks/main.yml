@@ -83,34 +83,34 @@
 
 # ## CONTENT ##
 
-# - name: website's content directory exists.
-#   file:
-#     state: directory
-#     path: "{{ server_root }}"
-#     owner: root
-#     group: root
-#     mode: 0755
+- name: website's content directory exists.
+  file:
+    state: directory
+    path: "{{ server_root }}"
+    owner: root
+    group: root
+    mode: 0755
 
-# - name: website's content files have been copied from controller.
-#   copy:
-#     src: "{{ item.src }}"
-#     dest: "{{ item.dest }}"
-#     owner: root
-#     group: root
-#     mode: 0755
-#   with_items:
-#     - src: "{{ website_role_path }}/files/content/"
-#       dest: "{{ server_root }}"
-#   when: copy_content
+- name: website's content files have been copied from controller.
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - src: "{{ website_role_path }}/files/content/"
+      dest: "{{ server_root }}"
+  when: copy_content
 
-# - name: website's content files are present with correct permissions.
-#   file:
-#     state: directory
-#     path: "{{ server_root }}"
-#     recurse: yes
-#     owner: root
-#     group: root
-#     mode: 0755
+- name: website's content files are present with correct permissions.
+  file:
+    state: directory
+    path: "{{ server_root }}"
+    recurse: yes
+    owner: root
+    group: root
+    mode: 0755
 
 
 # ## HTTPS ##

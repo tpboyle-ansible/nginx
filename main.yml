@@ -4,11 +4,11 @@
   become: yes
   vars:
     website_name: "regular-site.com"
-    website_role_path: ""
+    website_role_path: "{{ playbook_dir }}"
     server_root: "/var/www/{{ website_name }}"
-    https_port: 443
+    https_port: 61443
     copy_config: yes
-    copy_content: no
+    copy_content: yes
     letsencrypt_cert: no
   tasks:
     - include_tasks: tasks/main.yml
